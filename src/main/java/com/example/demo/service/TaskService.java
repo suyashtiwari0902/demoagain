@@ -18,11 +18,14 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
-    public Task getTaskById(Long id) throws Throwable {
+    public Task getTaskById(String id) throws Throwable {
         return taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
     }
-    public void deleteTask(Long id) {
+    public List<Task> getTaskByUserId(String userId) {
+        return taskRepository.findByUserId(userId);
+    }
+    public void deleteTask(String id) {
         if(taskRepository.existsById(id))
             taskRepository.deleteById(id);
     }

@@ -27,13 +27,13 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable Long id) throws Throwable {
+    public ResponseEntity<Task> getTaskById(@PathVariable String id) throws Throwable {
         Optional<Task> taskOptional = Optional.ofNullable(taskService.getTaskById(id));
         return taskOptional.map(task -> new ResponseEntity<>(task, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteTask(@PathVariable String id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
     }
