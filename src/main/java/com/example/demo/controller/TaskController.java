@@ -16,12 +16,12 @@ import java.util.Optional;
 public class TaskController {
     @Autowired
     private TaskService taskService;
-    @PostMapping
+    @PostMapping("/")
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
         Task createdTask = taskService.createTask(task);
         return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
     }
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Task>> getAllTasks() {
         List<Task> tasks = taskService.getAllTasks();
         return new ResponseEntity<>(tasks, HttpStatus.OK);

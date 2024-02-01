@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+import java.util.Optional;
 @Service
 public class TaskService {
     @Autowired
     private TaskRepository taskRepository;
     public Task createTask(Task task) {
-        // Implement logic to create a new task
         return taskRepository.save(task);
     }
     public List<Task> getAllTasks() {
@@ -20,12 +19,10 @@ public class TaskService {
     }
 
     public Task getTaskById(Long id) throws Throwable {
-        // Implement logic to retrieve a task by ID
         return taskRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Task not found with id: " + id));
     }
     public void deleteTask(Long id) {
-        // Implement logic to delete a task
         if(taskRepository.existsById(id))
             taskRepository.deleteById(id);
     }
